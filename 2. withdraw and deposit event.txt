@@ -1,0 +1,74 @@
+ **without function**
+//deposit event
+        const depositBtn = document.getElementById("deposit");
+        depositBtn.addEventListener("click", function(){
+            const depositAmount = document.getElementById("depositAmount").value; // this is string value
+            const depositNumber = parseFloat(depositAmount); // convert string to float number
+
+            // after deposit adding position and value
+            updateSpanText("currentDeposit", depositNumber)
+            document.getElementById("depositAmount").value = ""; // empty input box after submit
+
+            // value add after submit
+            updateSpanText("currentBallance", depositNumber);
+        })
+        // withdraw event
+        const withdrawBtn = document.getElementById("withdraw");
+        withdrawBtn.addEventListener("click", function(){
+            const withdrawAmountString = document.getElementById("withdrawAmount").value;
+            const withdrawNumber = parseFloat(withdrawAmountString);
+        })
+
+        //deposit and balance function
+        function updateSpanText(id, depositNumber){
+            const currentString = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(currentString);
+            const total = depositNumber + currentNumber;
+            document.getElementById(id).innerText = total;
+        }
+
+**with function**
+
+//deposit event
+        const depositBtn = document.getElementById("deposit");
+        depositBtn.addEventListener("click", function(){
+            const depositNumber = inputNumber("depositAmount"); 
+
+            // after deposit adding position and value
+            updateSpanText("currentDeposit", depositNumber)
+            // value add on balance after submit
+            updateSpanText("currentBallance", depositNumber);
+
+            // empty input box after submit
+            document.getElementById("depositAmount").value = ""; 
+
+        })
+        // withdraw event
+        const withdrawBtn = document.getElementById("withdraw");
+        withdrawBtn.addEventListener("click", function(){
+            const withdrawNumber = inputNumber("withdrawAmount");
+
+            // after withdraw adding position and value
+            updateSpanText("currentWithdraw", withdrawNumber)
+            // value add on balance after submit
+            updateSpanText("currentBallance", -1 * withdrawNumber);
+
+
+            // after deposit adding position and value
+            document.getElementById("withdrawAmount").value = "";
+            
+        })
+        //event function (deposit & withdraw)
+        function inputNumber(id){
+            const amountString = document.getElementById(id).value;
+            const amountNumber = parseFloat(amountString);
+            return amountNumber;
+        }
+
+        //deposit and balance function
+        function updateSpanText(id, depositNumber){
+            const currentString = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(currentString);
+            const total = depositNumber + currentNumber;
+            document.getElementById(id).innerText = total;
+        }
