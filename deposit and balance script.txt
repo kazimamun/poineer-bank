@@ -1,0 +1,38 @@
+**without function**
+
+// after deposit adding position and value
+const currentDepositString = document.getElementById("currentDeposit").innerText; // this is string value
+const currentDepositNumber = parseFloat(currentDepositString); // convert string to float number
+const totalDeposit = depositNumber + currentDepositNumber;            
+document.getElementById("currentDeposit").innerText = totalDeposit; //this line will add value in deposit section
+            
+document.getElementById("depositAmount").value = ""; // empty input box after submit
+
+// value add after submit
+const currentBallanceString = document.getElementById("currentBallance").innerText;
+const currentBallanceNumber = parseFloat(currentBallanceString);
+const totalBallance = depositNumber + currentBallanceNumber;
+document.getElementById("currentBallance").innerText = totalBallance;
+
+**with function**
+
+//deposit event
+        const depositBtn = document.getElementById("deposit");
+        depositBtn.addEventListener("click", function(){
+            const depositAmount = document.getElementById("depositAmount").value; // this is string value
+            const depositNumber = parseFloat(depositAmount); // convert string to float number
+
+            // after deposit adding position and value            
+            updateSpanText("currentDeposit", depositNumber)
+
+            document.getElementById("depositAmount").value = ""; // empty input box after submit
+
+            // value add after submit
+            updateSpanText("currentBallance", depositNumber);
+        })
+        function updateSpanText(id, depositNumber){
+            const currentString = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(currentString);
+            const total = depositNumber + currentNumber;
+            document.getElementById(id).innerText = total;
+        }
